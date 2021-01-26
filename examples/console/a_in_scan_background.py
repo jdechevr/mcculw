@@ -70,7 +70,7 @@ def run_example():
 
         total_count = points_per_channel * num_chans
 
-        ai_range = ai_info.supported_ranges[0]
+        ai_range = ai_info.supported_ranges[1]  #Sélection de -5V/5V
 
         scan_options = ScanOptions.BACKGROUND
 
