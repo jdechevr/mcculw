@@ -21,7 +21,6 @@ import statistics
 import time
 
 
-
 from mcculw import ul
 from mcculw.device_info import DaqDeviceInfo
 
@@ -67,7 +66,9 @@ def run_example():
     Valeurs_brutes = []
     Valeurs_volt = [] 
     Donnees_SO = []
- 
+    fichier = open("donnee3","w")
+    
+    
     for k in range(500): 
         for i in range(4):                            
             # Get a value from the device 
@@ -76,14 +77,20 @@ def run_example():
             Valeurs_volt.append(ul.to_eng_units(board_num, ai_range,Valeurs_brutes[-1]))
 
         Donnees_SO.append(Valeurs_brutes[2])
+        fichier.write(str(Valeurs_brutes[2]) + "\n")
         Valeurs_brutes = []
 
+    fichier.close()
     print(Donnees_SO)
+
+    
+
+    
+
+    
     print("Ecart type :",statistics.stdev(Donnees_SO))
     print("Moyenne : ",statistics.mean(Donnees_SO))
 
-    
-   
     # Display the raw value
     # print('Raw Value:', Valeurs_brutes[2])    # Display the engineering value
     # print('Engineering Value:', Valeurs_volt[2])
